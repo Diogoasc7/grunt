@@ -7,7 +7,7 @@ module.exports= function(grunt){
                     'dev/styles/main.css': 'src/styles/main.less'
                 }
             },
-            production: { ///vercel
+            production: { //vercel
                 options:{
                     compress: true,
                 },
@@ -33,6 +33,10 @@ module.exports= function(grunt){
                         {
                             match: 'ENDERECO_DO_CSS',
                             replacement: './styles/main.css'
+                        },
+                        {
+                            match: 'ENDERECO_DO_JS',
+                            replacement: '../src/scripts/main.js'
                         }
                     ]
                 },
