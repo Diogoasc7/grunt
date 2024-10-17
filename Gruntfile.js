@@ -2,57 +2,24 @@ module.exports= function(grunt){
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         less: {
-            development: {
+            development: { //nossa maquina
                 files: {
-                    'main.css': 'main.less'
+                    'dev/styles/main.css': 'src/styles/main.less'
                 }
             },
-            production: {
+            production: { ///vercel
                 options:{
                     compress: true,
                 },
                 files: {
-                    'main.min.css': 'main.less'
+                    'dist/styles/main.min.css': 'src/styles/main.less'
                 }
             }
         },
-        sass: {
-            dist: {
-                option: {
-                    style: 'compressed'
-                },
-                files: {
-                    'main2.css': 'main.scss'
-                }
-            }
-        },
-        concurrent: {
-            target: ['olaGrunt','less','sass','tarefaDemorada']
-        }
     })
 
-    grunt.registerTask('olaGrunt', function(){
-        const done = this.async();
-        setTimeout(function() {
-            console.log('Olá Grunt');
-            done();
-        }, 3000)
-        
-    })
-
-    grunt.registerTask('tarefaDemorada', function(){
-        const done = this.async();
-        setTimeout(function() {
-            console.log('Olá Grunt');
-            done();
-        }, 3000)
-        
-    })
-    
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-concurrent');
 
-    grunt.registerTask('default',['concurrent']);
-
+    grunt.registerTask('default',['less:development']);
+    grunt.registerTask('build',['less:production']);
 }
