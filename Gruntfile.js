@@ -57,7 +57,7 @@ module.exports = function(grunt) {
                             replacement: './styles/main.min.css'
                         },
                         {
-                            match: 'ENDERECO_DO_CSS',
+                            match: 'ENDERECO_DO_JS',
                             replacement: './scripts/main.min.js'
                         },
                     ]
@@ -90,7 +90,19 @@ module.exports = function(grunt) {
                     'dist/scripts/main.min.js': 'src/scripts/main.js'
                 }
             }
-        }
+        },
+        copy: {
+            dev: {
+                files: [
+                    { expand: true, cwd: 'src/scripts/', src: ['main.js'], dest: 'dev/scripts/' }
+                ]
+            },
+            dist: {
+                files: [
+                    { expand: true, cwd: 'dist/scripts/', src: ['main.min.js'], dest: 'dist/scripts/' }
+                ]
+            }
+        },
     })
 
     grunt.loadNpmTasks('grunt-contrib-less');
@@ -99,7 +111,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('build', ['less:production', 'htmlmin:dist', 'replace:dist', 'clean', 'uglify']);
+    grunt.registerTask('build', ['less:production', 'htmlmin:dist', 'replace:dist', 'clean','copy:dist', 'uglify']);
 }
