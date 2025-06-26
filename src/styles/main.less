@@ -1,0 +1,35 @@
+@corPrincipal: #2ecc71;
+@fundo: linear-gradient(135deg, #1abc9c, #3498db);
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: @fundo;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background: rgba(0,0,0,0.3);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    padding: 10px 20px;
+    background-color: @corPrincipal;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken(@corPrincipal, 10%);
+    }
+}
